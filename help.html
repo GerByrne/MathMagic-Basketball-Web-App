@@ -1,0 +1,171 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>MathMagic Basketball</title>
+<link href="styles.css" rel="stylesheet" type="text/css">
+<link href="fonts/stylesheet.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/mathLogic.js"></script>
+<script type="text/javascript" src="js/bballfunctions.js"></script>
+<script type="text/javascript" src="js/timer.js"></script>
+<script type="text/javascript" src="js/mainHeading.js"></script>
+<script type="text/javascript" src="js/modernizr-latest.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+<style>
+ p#msg	{ top:0px; left:100px; width:450px; height:40px; 	}  
+ p#map	{ top:5px; left:0px; width:450px; height:225px;  text-decoration:none; 	}
+ p#map a	{ color:aqua;  	} 
+
+.help_center_panel { 
+    height:290px;												
+	margin: 0 auto; 
+	background-color:#fff;
+	width:50%; 
+	margin-left:6%; 
+	border-radius: 10px; 
+	padding-bottom:10px;
+	color:#33CCFF;
+	font-size:1em;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black, 4px 4px 10px red; 
+}
+
+#help_right_panel {
+    float:right; 
+    position:relative;    
+    background:  url(images/blue40opauge.png) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+
+    margin-bottom:4.2%;
+    margin-right:40px; 
+    width:35%; 
+    height:310px;     
+	border-radius: 10px;
+}
+
+#help_instructions {
+    margin: 0 25px;
+	padding: 15px 10px;
+	color:yellow;
+	font-size:1em;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black, 4px 4px 10px red;  
+}
+
+</style>
+
+<script>
+function init3(){
+document.getElementById("timespanUpper").innerHTML ="";
+document.getElementById("timespanLower").innerHTML ="";
+document.getElementById("game").innerHTML=""; 
+$('#game').removeAttr('id');                     //jQuery was the best option here
+
+if (navigator.geolocation)
+{
+document.getElementById('msg').innerHTML = "Geolocation service is trying to find you...";
+navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
+}
+
+else { document.getElementById('msg').innerHTML = "Your browser does not support Geolocation service"; }
+
+function errorFunction(position)
+{
+document.getElementById('msg').innerHTML = "Geolocation cannot find you at this time";
+}
+
+function successFunction(position)
+{
+var lat = position.coords.latitude;
+var lng = position.coords.longitude;
+
+document.getElementById('msg').innerHTML = "Found you at...<br>Latitude: "+lat.toFixed(2)+", Longitude: "+lng.toFixed(2);
+
+var lating = new google.maps.LatLng(lat, lng);
+var options = { zoom: 18, center:lating, mapTypeId: google.maps.MapTypeId.ROADMAP };
+var map = new google.maps.Map(document.getElementById('map'), options);
+var map = new google.maps.Marker( {position: lating, map: map, title:"You Are Here"} );
+}
+
+}
+document.onload = init3;
+</script>
+</head>
+
+<body>
+<div class="container">
+  <div class="header">
+	  <div class="shake" style="float: left; width:20%;"><a href="#"><img class="logo" src="images\wizard_logo.png" alt="Math Wizard Logo" name="Math Wizard" width="200" height="153" id="Insert_logo"></a></div>
+	 <div id="countdownClock">
+	   <div id="timespanUpper"></div><br>
+	   <div id="timespanLower"></div>
+     </div>
+	 
+     <div style="margin: 0 auto; width:57%; padding-top:0px; padding-bottom:0px; margin-right:200px; padding-left: 0px;">
+       <canvas id="canvasLogo" height="110" width="490" class="shake" style="margin-left:0px; padding-left:0px;"></canvas>
+	 </div><!-- end canvas -->
+      	
+  </div><!-- end .header -->
+  
+   <!-- Navi bar -->
+    <div id="navbar">
+    <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="mobileInfo.html">Mobile</a></li>
+    <li><a href="help.html ">Help</a></li>    
+    </ul>
+    </div>
+
+  <div class="content">
+    
+    <!-- <div class="content">-->
+       
+	    <!------------------------------------------------- Right Panel ----------------------------------------------------------->
+	    <div id="help_right_panel">
+	       <div  id="help_instructions">
+	        	<p style="text-align:center; text-decoration:underline;">To Play</p>
+	        	<p>
+	        	<ul>
+	        	   <li>Choose a level Easy, Normal or Hard.</li>
+	        	   <li>Drag the basketball with your chosen answer into the net.</li>
+	        	   <li>10 points awarded if correct, if incorrect then try again.</li>
+	        	   <li>60 seconds for each game.</li>
+	        	   <li>The highest scores will be added to the scoreboard.</li>
+	        	</ul>	        	    
+	        	</p>
+	        	<p style="text-align:center;">Good Luck!</p>
+	       </div>		
+		</div>		
+			
+	    <div >  
+	        <section id="game">                     	           	
+	           <span> <ol class="high-scores"></ol></span>  									         
+	        </section>  
+	    </div>
+	    
+	    <!------------------------------------------------- Center Panel ----------------------------------------------------------->
+		<div class="help_center_panel">
+			<p id="msg"></p> <p id="map" class="myinfo"></p>
+		</div> <!-- end center_panel -->     
+    
+		</div><!-- end .content --> 
+		
+	 <div class="footer">
+		 <ul>
+	        <li><!-- empty element --></li>
+	        <li class="footermessage" style="">&copy;itb 2014, Ger Byrne <a href="mailto:B00045428@student.itb.ie">B00045428@student.itb.ie</a></li> 
+	        <li>  
+	        	<div class="socialLinks">
+				  <a href="https://www.facebook.com/sharer/sharer.php?u=http://mathbasketball.x10host.com/Index.html"><img src="images/facebook.png" alt="Facebook" width="32" height="32" style="border-radius: 5px;"></a>
+				  <a href="http://twitter.com/share?text=An%20Awesome%20Link&url=http://mathbasketball.x10host.com/Index.html"><img src="images/twitter.png" alt="Twitter" width="32" height="32" style="border-radius: 5px;"></a>	
+				  <a href="https://plus.google.com/share?url=http://mathbasketball.x10host.com/Index.html"><img src="images/googleplus.png" alt="Google Plus" width="32" height="32" style="border-radius: 5px;"></a>
+				</div>	
+	        </li>
+	     </ul>
+		</div>  
+  </div><!-- end .container -->  
+</body>
+</html>

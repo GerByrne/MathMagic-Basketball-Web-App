@@ -1,0 +1,153 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>MathMagic Basketball</title>
+<link rel="shortcut icon" href="wizard_icon.ico">
+<link href="styles.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/mathLogic.js"></script>
+<script type="text/javascript" src="js/bballfunctions.js"></script>
+<script type="text/javascript" src="js/timer.js"></script>
+<script type="text/javascript" src="js/mainHeading.js"></script>
+<script type="text/javascript" src="js/modernizr-latest.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script>    
+    if(!Modernizr.draganddrop){
+      alert("Sorry, This browser does not support drag and drop!");      
+    }
+    
+    if (!Modernizr.localstorage) {
+      alert("HTML5 Local storage is not available!");
+    } 
+</script>
+</head>
+
+<body>
+<div class="container">
+  <div class="header">
+	  <div class="shake" style="float: left; width:20%;"><a href="#"><img class="logo" src="images\wizard_logo.png" alt="Math Wizard Logo" name="Math Wizard" width="200" height="153"></a></div>
+	   <div id="countdownClock">
+     	<div id="timespanUpper"></div><br>
+        <div id="timespanLower"></div>        
+      </div>
+	 
+     <div style="margin: 0 auto; width:57%; padding-top:0px; padding-bottom:0px; margin-right:200px; padding-left: 0px;">
+       <canvas id="canvasLogo" height="110" width="490" class="shake" style="margin-left:0px; padding-left:0px;"></canvas> 
+	 </div><!-- end canvas -->
+      	
+  </div><!-- end .header -->
+  
+   <!-- Navi bar -->
+    <div id="navbar">
+    <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="mobileInfo.html">Mobile</a></li>
+    <li><a href="help.html">Help</a></li>     
+    </ul>
+    </div>
+
+  <div class="content">       
+	    <!------------------------------------------------- Right Panel ----------------------------------------------------------->
+	    <div id="right_panel" align="center">
+	        <div id="instruction" >
+	        	<p>Choose a level.<br>Then drop the ball with your answer into the net.</p>
+	        	<p>10 points<br>For each correct answer.</p></div> 	    	
+		    <div>	
+		    <table>
+		    <tr>
+		    	<td></td>  																	
+		    	<td><div id="bball1" class="number_font" draggable="true" ondragstart="return dragstart(event)"></div></td>   
+		    	<td></td>		   														
+		    </tr>
+		    <tr>
+		    	<td><div id="bball2" class="number_font" draggable="true" ondragstart="return dragstart(event)"></div></td>
+		    	<td></td>
+		    	<td><div  id="bball3" class="number_font" draggable="true" ondragstart="return dragstart(event)"></div></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><div id="bball4" class="number_font" draggable="true" ondragstart="return dragstart(event)"></div></td>
+				<td></td>
+			</tr>
+			</table>			
+			</div>		
+		</div>		
+			
+	    <!------------------------------------------------- Left Panel ----------------------------------------------------------->
+	    <div class="left_panel">
+	        <section>	    	 
+		    	 <button class="resetButton" onclick="resetFunction()">Game Reset</button>		    	
+		    </section>
+
+	        <section id="game">
+	           <div id="inGameScore">Score: 0</div>             	
+	           <span> <ol class="high-scores"></ol></span>
+		    </section>
+		    
+		    <section>	
+		       <button id="clearButton" class="resetButton" onclick="clearLocalStorage()" style="margin-top:15px;">Clear Table</button>
+		    </section>
+		
+	    </div>
+	    
+	    <!------------------------------------------------- Center Panel ----------------------------------------------------------->
+	    <div id="center_panel" style="width:35%;">
+		    <div class="inlineLevelButtons">		    
+			    <div style="float: left;">
+				    <button id="addEasy" class="smallButton" 
+			    	         onclick="addEasy(); 
+			    	         additionFunction(); 
+			    	         startTimer();">Easy   
+			    	 </button>			
+			    </div> 
+			    <div style="float: right;">			
+				    <button id="addDiff" class="smallButton" 
+			    	         onclick="addDiff(); 
+			    	         additionFunction(); 
+			    	         startTimer();">Hard
+			    	</button>			
+				</div>
+				<div style="margin-left: 25px;">
+			        <button id="addNorm" class="smallButton" 
+			    	         onclick="addNorm(); 
+			    	         additionFunction(); 
+			    	         startTimer();">Normal
+			    	</button>				        			    
+			    </div>				
+		    </div>
+		    
+			<!------------------------- Drop Zone ------------------------------>
+			<section id="behindBoard">
+			<div id="innerBoard">
+			  <div class="dropzone-image"> 
+			   <div id="drop_zone" ondrop="drop(event)" ondragover="dragover(event)" ></div>    
+			  </div>
+			</div>
+			</section>
+			
+			<div style="height:75px;"><div id="notification_panel"></div></div>
+			
+			<!-------------------_-- Question Output --------------------------->
+			<div id="question_output" class="question_number_font"></div>
+		</div> <!-- end center_panel --> 		
+    
+	</div><!-- end .content --> 	
+	
+	 <div class="footer">
+		 <ul>
+	        <li><!-- empty element --></li>
+	        <li class="footermessage" style="margin: 8px 126px 0 240px;">&copy;itb 2014, Ger Byrne <a href="mailto:B00045428@student.itb.ie">B00045428@student.itb.ie</a></li>  
+	        <li>  
+	        	<div class="socialLinks">
+				  <a href="https://www.facebook.com/sharer/sharer.php?u=http://mathbasketball.x10host.com/Index.html"><img src="images/facebook.png" alt="Facebook" width="32" height="32" style="border-radius: 5px;"></a>
+				  <a href="http://twitter.com/share?text=An%20Awesome%20Link&url=http://mathbasketball.x10host.com/Index.html"><img src="images/twitter.png" alt="Twitter" width="32" height="32" style="border-radius: 5px;"></a>	
+				  <a href="https://plus.google.com/share?url=http://mathbasketball.x10host.com/Index.html"><img src="images/googleplus.png" alt="Google Plus" width="32" height="32" style="border-radius: 5px;"></a>
+				</div>
+	
+	        </li>
+	     </ul>
+		</div>  
+  </div><!-- end .container -->
+  
+</body>
+</html>

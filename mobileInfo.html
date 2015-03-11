@@ -1,0 +1,175 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>MathMagic Basketball</title>
+<link href="styles.css" rel="stylesheet" type="text/css">
+<link href="fonts/stylesheet.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/mathLogic.js"></script>
+<script type="text/javascript" src="js/bballfunctions.js"></script>
+<script type="text/javascript" src="js/timer.js"></script>
+<script type="text/javascript" src="js/mainHeading.js"></script>
+<script type="text/javascript" src="js/modernizr-latest.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<style>
+#center_panel{	 
+	background:  url(images/blue40opauge.png) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover; 
+	width:35%; height:340px;
+	border-radius: 10px;
+}
+
+.left_panel{	
+	background:  url(images/blue40opauge.png) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	font-size:0.9em; 
+	width:25%;	
+	height:290px;
+	border-radius: 10px;
+}
+
+#right_panel {   
+   margin-bottom:7.2%;
+}
+
+.mobile_instructions {
+	text-align:justify;
+    margin: 0 4px;
+	padding: 15px 5px;
+	color:yellow;
+	font-size:1.1em;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black, 4px 4px 10px red;  
+}
+
+.mobile_instructions a {
+	color:#fff;
+}
+
+.warningNote { 
+	text-align:justify;
+	margin: 0 10px;
+	padding: 15px 5px;
+	color:#FF9999;
+	font-size:1em;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black, 4px 4px 10px red;
+	
+}
+
+.websiteInfo {
+    text-align:justify;
+    margin: 0 10px;
+	padding: 10px 5px 0px;
+	color:aqua;
+	font-size:1em;	
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black, 4px 4px 10px red;
+}
+
+.websiteInfo li {
+	padding-top:10px; 
+}
+
+.websiteInfo a{
+	color:#ffff00;
+	text-decoration:none;		
+}
+</style>
+
+<script>
+function init3(){
+document.getElementById("timespanUpper").innerHTML ="";
+document.getElementById("timespanLower").innerHTML ="";
+document.getElementById("game").innerHTML=""; 
+$('#game').removeAttr('id');                     //jQuery was the best option here
+}
+document.onload = init3;
+</script>
+</head>
+
+<body>
+<div class="container">
+  <div class="header">
+	 <div class="shake" style="float: left; width:20%;"><a href="#"><img class="logo" src="images\wizard_logo.png" alt="Math Wizard Logo" name="Math Wizard" width="200" height="153" id="Insert_logo"></a></div>	 
+	 <div id="countdownClock">
+	   <div id="timespanUpper"></div><br>
+	   <div id="timespanLower"></div>
+     </div>
+	 
+     <div style="margin: 0 auto; width:57%; padding-top:0px; padding-bottom:0px; margin-right:200px; padding-left: 0px;">
+       <canvas id="canvasLogo" height="110" width="490" class="shake" style="margin-left:0px; padding-left:0px;"></canvas>
+      </div><!-- end canvas -->      	
+  </div><!-- end .header -->
+  
+   <!-- Navi bar -->
+    <div id="navbar">
+    <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="mobileInfo.html">Mobile</a></li>
+    <li><a href="help.html">Help</a></li>
+    </ul>
+    </div>
+
+  <div class="content">
+       
+	    <!------------------------------------------------- Right Panel ----------------------------------------------------------->
+	    <div id="right_panel">
+	       <div class="warningNote" >
+	        	<p><u>Note:</u> To install apps from sources other than the Google Play Store, A security setting on Android devices may
+	        	   need to be altered to accept apps from unknown sources. This setting is usually reached by going to Settings then Security.
+	        	</p>	        	
+	       </div>		
+		</div>
+					
+	    <!------------------------------------------------- Left Panel ----------------------------------------------------------->
+	    <div class="left_panel">
+	    <div class="websiteInfo">
+	        <p>&nbsp;&nbsp;Other popular websites in this area that might be of interest are:</p>
+	        <p>
+	           <ul style="margin-left:35px;">
+                  <li><a href="http://www.mathsisfun.com/">MathsIsFun</a></li>
+                  <li><a href="http://www.coolmath4kids.com/">Coolmath4kids</a></li>
+                  <li><a href="http://www.mathplayground.com/">MathPlayground</a></li> 
+                  <li><a href="http://www.learninggamesforkids.com/math_games.html">LearnIngGamesforKids</a></li>
+                  <li><a href="http://www.mathgametime.com/blog/2012/08/top-math-game-websites-for-kids/">Mathgametime</a></li>
+                  <li><a href="http://www.funbrain.com/">Funbrain.com</a></li>   
+              </ul>
+	        </p>  
+	    </div>  
+	        <section id="game">	           	           	
+	           <span> <ol class="high-scores"></ol></span>     																		                   
+		    </section>  
+	    </div>
+	    
+	    <!------------------------------------------------- Center Panel ----------------------------------------------------------->
+		<div id="center_panel">
+		<div class="mobile_instructions">
+		<p>&nbsp;&nbsp;This web application is also available for mobile devices. An android app can be obtained from the QR code below: 
+		</p>
+		<p style="text-align:center; padding:2px;"><img src="images\Qcode.png" width="100" height="100" alt="Mobile Application" name="Qcode"></p>
+		<p>or the Apk file from this link: </p>
+		<p align="center"><a href="http://s3.amazonaws.com/android.phonegap/slicehost-production/apps/852190/MathMagicBasketball-debug.apk">Download the App here</a>. </p>
+		</div>			
+		</div> <!-- end center_panel -->    
+      </div><!-- end .content -->
+
+	 <div class="footer">
+		 <ul>
+	        <li><!-- empty element --></li>
+	        <li class="footermessage" style="">&copy;itb 2014, Ger Byrne <a href="mailto:B00045428@student.itb.ie">B00045428@student.itb.ie</a></li>  
+	        <li>  
+	        	<div class="socialLinks">
+				  <a href="https://www.facebook.com/sharer/sharer.php?u=http://mathbasketball.x10host.com/Index.html"><img src="images/facebook.png" alt="Facebook" width="32" height="32" style="border-radius: 5px;"></a>
+				  <a href="http://twitter.com/share?text=An%20Awesome%20Link&url=http://mathbasketball.x10host.com/Index.html"><img src="images/twitter.png" alt="Twitter" width="32" height="32" style="border-radius: 5px;"></a>	
+				  <a href="https://plus.google.com/share?url=http://mathbasketball.x10host.com/Index.html"><img src="images/googleplus.png" alt="Google Plus" width="32" height="32" style="border-radius: 5px;"></a>
+				</div>	
+	        </li>
+	     </ul>
+		</div>  
+  </div><!-- end .container -->
+</body>
+</html>
