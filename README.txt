@@ -2,8 +2,7 @@ Final Year Project/Thesis: (Investigation into the Extent and Limitations of Dyn
 
 Involved a study of contemporary web apps through technologies such as HTML5, CSS3 and JavaScript.
 
-Implementation involved the development of a cross-browser desktop web application and an
-accompanying mobile web app.
+Implementation involved the development of a cross-browser desktop web application and an accompanying mobile web app.
 
 The main purpose of developing these web-based apps was to test their relevant technologies and associated APIs to discover if they truly are a valid alternative to native desktop and mobile apps.
 
